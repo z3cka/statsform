@@ -958,7 +958,9 @@ function statsform_form_page_two_submit($form, &$form_state) {
  * Implements hook_page_alter().
  */
 function statsform_page_alter(&$page) {
-  $page['#theme'] = 'hijack';
+  if (arg(0) == 'statsform') {
+    $page['#theme'] = 'hijack'; 
+  }
 }
 
 /**
@@ -969,6 +971,7 @@ function statsform_theme($existing, $type, $theme, $path) {
     'hijack' => array(
       'template' => 'page--hijacked',
       'render element' => 'page',
+      'base hook' => 'page',
     ),
   );
 }
